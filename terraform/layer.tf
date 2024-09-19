@@ -22,5 +22,6 @@ resource "aws_lambda_layer_version" "auth_api" {
   description = "aws-sdk: ^2.1691.0"
   filename = data.archive_file.fiap_auth_layer.output_path
   source_code_hash = data.archive_file.fiap_auth_layer.output_base64sha256
+  compatible_architectures = ["x86_64"]
   compatible_runtimes = ["nodejs20.x"]
 }
