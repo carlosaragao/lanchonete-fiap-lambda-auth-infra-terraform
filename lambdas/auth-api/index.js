@@ -7,8 +7,8 @@ const createUser = async (email, cpf, name) => {
     })
 
     const command = new AdminCreateUserCommand({
-      UserPoolId: "us-east-1_AsClKPAGo",
-      Username: name,
+      UserPoolId: process.env.USER_POOL_ID,
+      Username: email,
       UserAttributes: [
         {
           Name: 'email',
@@ -38,9 +38,20 @@ const createUser = async (email, cpf, name) => {
 };
 
 exports.handler = async (event) => {
-    //const { email, cpf, name } = req.body;
+    const email = event['email'];
+    const cpf = event['cpf'];
+    const name = event['name'];
+
+    // Check for null or undefined values
+    if (!email || !cpf || !name) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ error: "Email, CPF and name are required." }),
+        };
+    }
+
     try {
-        const response = await createUser("rafael.nakazono@outlook.com", "11234567899", "rafaelyuji");
+        const response = await createUser(email, cpf, name);
 
         // Return the success response in AWS Lambda format
         return {

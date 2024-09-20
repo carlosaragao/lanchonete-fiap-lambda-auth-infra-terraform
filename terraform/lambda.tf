@@ -12,7 +12,11 @@ resource "aws_lambda_function" "fiap_auth_api" {
 
     filename = data.archive_file.fiap_api_artefact.output_path
     source_code_hash = data.archive_file.fiap_api_artefact.output_base64sha256
-
+    environment {
+        variables = {
+            USER_POOL_ID = aws_cognito_user_pool.lanchonete_fiap_user_pool.id
+        }
+    }
     timeout = 5
     memory_size = 128
 
