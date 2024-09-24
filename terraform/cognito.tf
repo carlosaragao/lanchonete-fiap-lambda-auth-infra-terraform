@@ -1,26 +1,5 @@
-terraform {
-  required_version = "1.9.5"
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.63.0"
-    }
-  }
-}
-
-data "aws_iam_role" "cognito_cluster_role" {
-  name = "LabRole"
-}
-
-provider "aws" {
-  region     = var.AWS_REGION
-  access_key = var.AWS_ACCESS_KEY_ID
-  secret_key = var.AWS_SECRET_ACCESS_KEY
-  token      = var.AWS_SESSION_TOKEN
-}
-
-resource "aws_cognito_user_pool" "lanchonete-fiap-user-pool-645215" {
-  name = "lanchonete-fiap-user-pool-645215"
+resource "aws_cognito_user_pool" "lanchonete_fiap_user_pool" {
+  name = var.COGNITO_USER_POOL_NAME
 
   username_attributes = ["email"]
   auto_verified_attributes = ["email"]
@@ -77,7 +56,7 @@ resource "aws_cognito_user_pool" "lanchonete-fiap-user-pool-645215" {
 
   schema {
     attribute_data_type = "String"
-    name                = "custom:cpf"
+    name                = "cpf"
     required            = false
     mutable             = false
     string_attribute_constraints {
@@ -89,15 +68,15 @@ resource "aws_cognito_user_pool" "lanchonete-fiap-user-pool-645215" {
 }
 
 # Cognito User Pool Domain
-resource "aws_cognito_user_pool_domain" "fiap-domain-87564537" {
-  domain      = "fiap-domain-87564537"
-  user_pool_id = aws_cognito_user_pool.lanchonete-fiap-user-pool-645215.id
+resource "aws_cognito_user_pool_domain" "fiap-domain" {
+  domain      = var.COGNITO_DOMAIN_NAME
+  user_pool_id = aws_cognito_user_pool.lanchonete_fiap_user_pool.id
 }
 
 # Cognito User Pool Client for Hosted UI
-resource "aws_cognito_user_pool_client" "fiap-client-87564537" {
-  name         = "fiap-client-87564537"
-  user_pool_id = aws_cognito_user_pool.lanchonete-fiap-user-pool-645215.id
+resource "aws_cognito_user_pool_client" "fiap-client" {
+  name         = var.COGNITO_CLIENT_NAME
+  user_pool_id = aws_cognito_user_pool.lanchonete_fiap_user_pool.id
 
   # Enable the Cognito Hosted UI
   explicit_auth_flows = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH", "ALLOW_ADMIN_USER_PASSWORD_AUTH"]
