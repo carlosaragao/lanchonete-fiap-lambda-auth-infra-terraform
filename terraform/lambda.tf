@@ -23,6 +23,13 @@ resource "aws_lambda_function" "fiap_create_user_api" {
     layers = [aws_lambda_layer_version.auth_api.arn]
 }
 
+resource "aws_lambda_permission" "fiap_create_user_api" {
+  action = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.fiap_create_user_api.arn
+  principal = "apigateway.amazonaws.com"
+  source_arn = "arn:aws:execute-api:${var.AWS_REGION}:${var.AWS_ACCOUNT_ID}:*/*"
+}
+
 data "archive_file" "fiap_auth_user_api_artefact" {
     output_path = "files/fiap_auth_user_api_artefact.zip"
     type = "zip"
@@ -47,4 +54,11 @@ resource "aws_lambda_function" "fiap_auth_user_api" {
     memory_size = 128
 
     layers = [aws_lambda_layer_version.auth_api.arn]
+}
+
+resource "aws_lambda_permission" "fiap_auth_user_api" {
+  action = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.fiap_auth_user_api.arn
+  principal = "apigateway.amazonaws.com"
+  source_arn = "arn:aws:execute-api:${var.AWS_REGION}:${var.AWS_ACCOUNT_ID}:*/*"
 }
