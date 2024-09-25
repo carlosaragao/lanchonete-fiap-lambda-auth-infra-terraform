@@ -82,10 +82,10 @@ resource "aws_cognito_user_pool_client" "fiap-client" {
   explicit_auth_flows = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH", "ALLOW_ADMIN_USER_PASSWORD_AUTH"]
 
   # Callback URLs (add your own as needed)
-  callback_urls = ["https://example.com/callback"]
+  callback_urls = [var.COGNITO_URL_CALLBACK] //definir uma variável de ambiente.
 
   # Logout URLs (add your own as needed)
-  logout_urls = ["https://example.com/logout"]
+  logout_urls = [var.COGNITO_URL_LOGOUT]
 
   # Prevent user credentials from being exposed to the client side
   allowed_oauth_flows_user_pool_client = true
