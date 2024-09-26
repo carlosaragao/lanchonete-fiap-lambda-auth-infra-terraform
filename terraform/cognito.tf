@@ -65,6 +65,14 @@ resource "aws_cognito_user_pool" "lanchonete_fiap_user_pool" {
     }
   }
 
+  # Lifecycle block to prevent recreation on minor attribute changes
+  lifecycle {
+    ignore_changes = [
+      password_policy,  # Ignore changes to password policy
+      schema   # Prevents recreating the pool when schema changes slightly
+    ]
+  }
+
 }
 
 # Cognito User Pool Domain
@@ -82,10 +90,10 @@ resource "aws_cognito_user_pool_client" "fiap-client" {
   explicit_auth_flows = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_USER_SRP_AUTH", "ALLOW_ADMIN_USER_PASSWORD_AUTH"]
 
   # Callback URLs (add your own as needed)
-  callback_urls = [var.COGNITO_URL_CALLBACK] //definir uma variável de ambiente.
+  callback_urls = ["https://${var.COGNITO_URL_CALLBACK}"]
 
   # Logout URLs (add your own as needed)
-  logout_urls = [var.COGNITO_URL_LOGOUT]
+  logout_urls = ["https://${var.COGNITO_URL_LOGOUT}"]
 
   # Prevent user credentials from being exposed to the client side
   allowed_oauth_flows_user_pool_client = true
