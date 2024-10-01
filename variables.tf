@@ -1,54 +1,54 @@
-variable "AWS_REGION" {
+variable "aws_region" {
   description = "AWS region"
   type        = string
 }
 
-variable "AWS_ACCESS_KEY_ID" {
+variable "aws_access_key_id" {
   description = "AWS Access Key ID"
   type        = string
 }
 
-variable "AWS_SECRET_ACCESS_KEY" {
+variable "aws_secret_access_key" {
   description = "AWS Secret Access Key"
   type        = string
 }
 
-variable "AWS_SESSION_TOKEN" {
+variable "aws_session_token" {
   description = "AWS Session Token"
   type        = string
 }
 
-variable "AWS_ACCOUNT_ID" {
+variable "aws_account_id" {
   description = "AWS Account ID"
   type        = string
 }
 
-variable "COGNITO_DOMAIN_NAME" {
+variable "cognito_domain_name" {
   description = "AWS Cognito Domain Name"
-  type = string
+  type        = string
 }
 
-variable "COGNITO_CLIENT_NAME" {
+variable "cognito_client_name" {
   description = "AWS Cognito Client Name"
-  type = string
+  type        = string
 }
 
-variable "COGNITO_USER_POOL_NAME" {
+variable "cognito_user_pool_name" {
   description = "AWS Cognito User Pool Name"
-  type = string
+  type        = string
 }
 
-variable "API_GATEWAY_NAME" {
+variable "api_gateway_name" {
   description = "AWS API Gateway Name"
-  type = string
+  type        = string
 }
 
-variable "COGNITO_URL_CALLBACK" {
+variable "cognito_url_callback" {
   description = "AWS Cognito URL Callback"
-  type = string
+  type        = string
 }
 
-variable "COGNITO_URL_LOGOUT" {
+variable "cognito_url_logout" {
   description = "AWS Cognito URL Logout"
-  type = string
+  type        = string
 }

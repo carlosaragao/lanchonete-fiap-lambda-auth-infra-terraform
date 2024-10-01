@@ -16,16 +16,24 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
-        terraform_version: 1.9.5
-
-    - name: Terraform Format Check
-      run: terraform fmt -check
+        terraform_version: 1.9.4
 
     - name: Terraform Init
       run: terraform init
 
+    - name: Terraform Format Check
+      run: terraform fmt -check
+
     - name: Terraform Validate
       run: terraform validate
+      
+    - name: Check environment variables
+      run: |
+        echo "API Gateway Name: ${API_GATEWAY_NAME}"
+        echo "Cognito Domain Name: ${COGNITO_DOMAIN_NAME}"
+      env:
+        API_GATEWAY_NAME: ${{ secrets.API_GATEWAY_NAME }}
+        COGNITO_DOMAIN_NAME: ${{ secrets.COGNITO_DOMAIN_NAME }}
 
     - name: Terraform Plan
       env:
