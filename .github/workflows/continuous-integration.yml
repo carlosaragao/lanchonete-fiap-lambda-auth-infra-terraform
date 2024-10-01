@@ -22,9 +22,6 @@ jobs:
       with:
         terraform_version: 1.9.5
 
-    - name: Add Terraform to PATH
-      run: echo "/terraform" >> $GITHUB_PATH
-
     - name: Terraform Format Check
       run: terraform fmt -check
 
