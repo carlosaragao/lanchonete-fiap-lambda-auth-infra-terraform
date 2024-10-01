@@ -34,10 +34,10 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+        AG_NAME: ${{ secrets.AG_NAME }}
         COGNITO_DOMAIN_NAME: ${{ secrets.COGNITO_DOMAIN_NAME }}
         COGNITO_CLIENT_NAME: ${{ secrets.COGNITO_CLIENT_NAME }}
         COGNITO_USER_POOL_NAME: ${{ secrets.COGNITO_USER_POOL_NAME }}
-        AG_NAME: ${{ secrets.AG_NAME }}
         COGNITO_URL_CALLBACK: ${{ secrets.COGNITO_URL_CALLBACK }}
         COGNITO_URL_LOGOUT: ${{ secrets.COGNITO_URL_LOGOUT }}
       run: |
@@ -46,9 +46,9 @@ jobs:
                          -var="aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" \
                          -var="aws_session_token=${AWS_SESSION_TOKEN}" \
                          -var="aws_account_id=${AWS_ACCOUNT_ID}" \
+                         -var="ag_name=${AG_NAME}" \
                          -var="cognito_domain_name=${COGNITO_DOMAIN_NAME}" \
                          -var="cognito_client_name=${COGNITO_CLIENT_NAME}" \
                          -var="cognito_user_pool_name=${COGNITO_USER_POOL_NAME}" \
-                         -var="ag_name=${AG_NAME}" \
                          -var="cognito_url_callback=${COGNITO_URL_CALLBACK}" \
                          -var="cognito_url_logout=${COGNITO_URL_LOGOUT}"
