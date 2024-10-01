@@ -21,15 +21,15 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
-      working-directory: ../Terraform  # Specify your Terraform directory here
+      working-directory: terraform  # Specify your Terraform directory here
 
     - name: Terraform Format Check
       run: terraform fmt -check
-      working-directory: ../Terraform  # Specify your Terraform directory here
+      working-directory: terraform  # Specify your Terraform directory here
 
     - name: Terraform Validate
       run: terraform validate
-      working-directory: ../Terraform  # Specify your Terraform directory here
+      working-directory: terraform  # Specify your Terraform directory here
 
     - name: Terraform Plan
       env:
