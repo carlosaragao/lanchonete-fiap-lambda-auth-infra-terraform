@@ -25,30 +25,30 @@ variable "AWS_ACCOUNT_ID" {
 
 variable "COGNITO_DOMAIN_NAME" {
   description = "AWS Cognito Domain Name"
-  type = string
+  type        = string
 }
 
 variable "COGNITO_CLIENT_NAME" {
   description = "AWS Cognito Client Name"
-  type = string
+  type        = string
 }
 
 variable "COGNITO_USER_POOL_NAME" {
   description = "AWS Cognito User Pool Name"
-  type = string
+  type        = string
 }
 
 variable "API_GATEWAY_NAME" {
   description = "AWS API Gateway Name"
-  type = string
+  type        = string
 }
 
 variable "COGNITO_URL_CALLBACK" {
   description = "AWS Cognito URL Callback"
-  type = string
+  type        = string
 }
 
 variable "COGNITO_URL_LOGOUT" {
   description = "AWS Cognito URL Logout"
-  type = string
+  type        = string
 }

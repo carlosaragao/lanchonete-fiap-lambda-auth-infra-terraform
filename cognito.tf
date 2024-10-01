@@ -1,10 +1,10 @@
 resource "aws_cognito_user_pool" "lanchonete_fiap_user_pool" {
   name = var.COGNITO_USER_POOL_NAME
 
-  username_attributes = ["email"]
+  username_attributes      = ["email"]
   auto_verified_attributes = ["email"]
   password_policy {
-    minimum_length = 8
+    minimum_length    = 8
     require_lowercase = true
     require_uppercase = true
     require_numbers   = true
@@ -68,8 +68,8 @@ resource "aws_cognito_user_pool" "lanchonete_fiap_user_pool" {
   # Lifecycle block to prevent recreation on minor attribute changes
   lifecycle {
     ignore_changes = [
-      password_policy,  # Ignore changes to password policy
-      schema   # Prevents recreating the pool when schema changes slightly
+      password_policy, # Ignore changes to password policy
+      schema           # Prevents recreating the pool when schema changes slightly
     ]
   }
 
@@ -77,7 +77,7 @@ resource "aws_cognito_user_pool" "lanchonete_fiap_user_pool" {
 
 # Cognito User Pool Domain
 resource "aws_cognito_user_pool_domain" "fiap-domain" {
-  domain      = var.COGNITO_DOMAIN_NAME
+  domain       = var.COGNITO_DOMAIN_NAME
   user_pool_id = aws_cognito_user_pool.lanchonete_fiap_user_pool.id
 }
 
