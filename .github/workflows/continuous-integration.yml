@@ -8,6 +8,11 @@ on:
 jobs:
   terraform-plan:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: terraform  # Set working directory globally
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -16,10 +21,6 @@ jobs:
       uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: 1.9.5
-
-    defaults:
-      run:
-        working-directory: terraform  # Set working directory globally
 
     - name: Add Terraform to PATH
       run: echo "Adding custom Terraform path to PATH"
