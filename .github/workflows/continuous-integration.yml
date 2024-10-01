@@ -8,11 +8,7 @@ on:
 jobs:
   terraform-plan:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: terraform  # Set working directory globally
-
+        
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
