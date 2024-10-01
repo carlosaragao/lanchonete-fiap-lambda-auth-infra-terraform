@@ -53,9 +53,7 @@ const authenticateUser = async (email, password, newPassword = null) => {
 };
 
 exports.handler = async (event) => {
-  const email = event['email'];
-  const password = event['password'];
-  const newPassword = event['newPassword'];
+  const { email, password, newPassword } = JSON.parse(event.body)
 
   // O newPassword é opcional, para lidar com a mudança de senha
   if (!email || !password) {

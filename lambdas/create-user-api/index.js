@@ -39,9 +39,7 @@ const createUser = async (email, cpf, name) => {
 };
 
 exports.handler = async (event) => {
-    const email = event['email'];
-    const cpf = event['cpf'];
-    const name = event['name'];
+    const { email, cpf, name} = JSON.parse(event.body)
 
     // Check for null or undefined values
     if (!email || !cpf || !name) {

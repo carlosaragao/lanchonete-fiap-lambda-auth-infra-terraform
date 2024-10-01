@@ -1,0 +1,53 @@
+name: CD Pipeline - Infra
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.9.5
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Format Check
+      run: terraform fmt -check
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Apply
+      env:
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+        COGNITO_DOMAIN_NAME: ${{ secrets.COGNITO_DOMAIN_NAME }}
+        COGNITO_CLIENT_NAME: ${{ secrets.COGNITO_CLIENT_NAME }}
+        COGNITO_USER_POOL_NAME: ${{ secrets.COGNITO_USER_POOL_NAME }}
+        API_GATEWAY_NAME: ${{ secrets.API_GATEWAY_NAME }}
+        COGNITO_URL_CALLBACK: ${{ secrets.COGNITO_URL_CALLBACK }}
+        COGNITO_URL_LOGOUT: ${{ secrets.COGNITO_URL_LOGOUT }}
+      run: |
+        terraform plan -var="aws_region=${AWS_REGION}" \
+                         -var="aws_access_key_id=${AWS_ACCESS_KEY_ID}" \
+                         -var="aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" \
+                         -var="aws_session_token=${AWS_SESSION_TOKEN}" \
+                         -var="aws_account_id=${AWS_ACCOUNT_ID}" \
+                         -var="cognito_domain_name=${COGNITO_DOMAIN_NAME}" \
+                         -var="cognito_client_name=${COGNITO_CLIENT_NAME}" \
+                         -var="cognito_user_pool_name=${COGNITO_USER_POOL_NAME}" \
+                         -var="api_gateway_name=${API_GATEWAY_NAME}" \
+                         -var="cognito_url_callback=${COGNITO_URL_CALLBACK}" \
+                         -var="cognito_url_logout=${COGNITO_URL_LOGOUT}"

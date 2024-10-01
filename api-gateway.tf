@@ -33,6 +33,6 @@ resource "aws_apigatewayv2_route" "create_user_post" {
 
 resource "aws_apigatewayv2_route" "auth_user_get" {
   api_id    = aws_apigatewayv2_api.this.id
-  route_key = "GET /v1/auth-user"
+  route_key = "POST /v1/auth-user"
   target    = "integrations/${aws_apigatewayv2_integration.fiap_auth_user_api.id}"
 }

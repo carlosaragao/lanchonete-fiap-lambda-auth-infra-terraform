@@ -42,3 +42,13 @@ variable "API_GATEWAY_NAME" {
   description = "AWS API Gateway Name"
   type = string
 }
+
+variable "COGNITO_URL_CALLBACK" {
+  description = "AWS Cognito URL Callback"
+  type = string
+}
+
+variable "COGNITO_URL_LOGOUT" {
+  description = "AWS Cognito URL Logout"
+  type = string
+}
