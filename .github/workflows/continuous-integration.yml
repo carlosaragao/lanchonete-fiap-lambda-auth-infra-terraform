@@ -23,11 +23,7 @@ jobs:
         terraform_version: 1.9.5
 
     - name: Add Terraform to PATH
-      run: echo "Adding custom Terraform path to PATH"
-      shell: bash
-      run: |
-        echo "${{ github.workspace }}/Terraform" >> $GITHUB_PATH
-        export PATH="${{ github.workspace }}/Terraform:$PATH"
+      run: echo "${{ github.workspace }}/terraform" >> $GITHUB_PATH
 
     - name: Terraform Format Check
       run: terraform fmt -check
