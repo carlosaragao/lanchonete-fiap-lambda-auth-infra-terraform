@@ -52,3 +52,4 @@ jobs:
                          -var="api_gateway_name=${API_GATEWAY_NAME}" \
                          -var="cognito_url_callback=${COGNITO_URL_CALLBACK}" \
                          -var="cognito_url_logout=${COGNITO_URL_LOGOUT}"
+                         -auto-approve
