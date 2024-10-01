@@ -27,7 +27,7 @@ resource "aws_lambda_permission" "fiap_create_user_api" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.fiap_create_user_api.arn
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "arn:aws:execute-api:${var.AWS_REGION}:${var.AWS_ACCOUNT_ID}:*/*"
+  source_arn    = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_id}:*/*"
 }
 
 data "archive_file" "fiap_auth_user_api_artefact" {
@@ -60,5 +60,5 @@ resource "aws_lambda_permission" "fiap_auth_user_api" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.fiap_auth_user_api.arn
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "arn:aws:execute-api:${var.AWS_REGION}:${var.AWS_ACCOUNT_ID}:*/*"
+  source_arn    = "arn:aws:execute-api:${var.aws_region}:${var.aws_account_id}:*/*"
 }
