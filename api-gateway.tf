@@ -1,5 +1,5 @@
 resource "aws_apigatewayv2_api" "this" {
-  name          = var.API_GATEWAY_NAME
+  name          = "postechfiap123"
   protocol_type = "HTTP"
 }
 

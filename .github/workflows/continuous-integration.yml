@@ -37,7 +37,6 @@ jobs:
         COGNITO_DOMAIN_NAME: ${{ secrets.COGNITO_DOMAIN_NAME }}
         COGNITO_CLIENT_NAME: ${{ secrets.COGNITO_CLIENT_NAME }}
         COGNITO_USER_POOL_NAME: ${{ secrets.COGNITO_USER_POOL_NAME }}
-        API_GATEWAY_NAME: "POSTECHFIAP"
         COGNITO_URL_CALLBACK: ${{ secrets.COGNITO_URL_CALLBACK }}
         COGNITO_URL_LOGOUT: ${{ secrets.COGNITO_URL_LOGOUT }}
       run: |
@@ -49,6 +48,5 @@ jobs:
                          -var="cognito_domain_name=${COGNITO_DOMAIN_NAME}" \
                          -var="cognito_client_name=${COGNITO_CLIENT_NAME}" \
                          -var="cognito_user_pool_name=${COGNITO_USER_POOL_NAME}" \
-                         -var="api_gateway_name=POSTECHFIAP" \
                          -var="cognito_url_callback=${COGNITO_URL_CALLBACK}" \
                          -var="cognito_url_logout=${COGNITO_URL_LOGOUT}"
