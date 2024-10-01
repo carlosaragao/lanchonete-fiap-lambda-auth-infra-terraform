@@ -7,7 +7,7 @@ data "archive_file" "fiap_create_user_api_artefact" {
 resource "aws_lambda_function" "fiap_create_user_api" {
   function_name = "fiap_create_user_api"
   handler       = "index.handler"
-  role          = "arn:aws:iam::226970162258:role/LabRole"
+  role          = "arn:aws:iam::075015730865:role/LabRole"
   runtime       = "nodejs20.x"
 
   filename         = data.archive_file.fiap_create_user_api_artefact.output_path
