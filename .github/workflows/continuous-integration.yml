@@ -17,19 +17,25 @@ jobs:
       with:
         terraform_version: 1.9.5
 
+    defaults:
+      run:
+        working-directory: terraform  # Set working directory globally
 
-
-    - name: Terraform Init
-      run: terraform init
-      working-directory: terraform  # Specify your Terraform directory here
+    - name: Add Terraform to PATH
+      run: echo "Adding custom Terraform path to PATH"
+      shell: bash
+      run: |
+        echo "${{ github.workspace }}/Terraform" >> $GITHUB_PATH
+        export PATH="${{ github.workspace }}/Terraform:$PATH"
 
     - name: Terraform Format Check
       run: terraform fmt -check
-      working-directory: terraform  # Specify your Terraform directory here
+
+    - name: Terraform Init
+      run: terraform init
 
     - name: Terraform Validate
       run: terraform validate
-      working-directory: terraform  # Specify your Terraform directory here
 
     - name: Terraform Plan
       env:
