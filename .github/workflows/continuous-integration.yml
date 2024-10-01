@@ -51,5 +51,5 @@ jobs:
                          -var="cognito_user_pool_name=${COGNITO_USER_POOL_NAME}" \
                          -var="api_gateway_name=${API_GATEWAY_NAME}" \
                          -var="cognito_url_callback=${COGNITO_URL_CALLBACK}" \
-                         -var="cognito_url_logout=${COGNITO_URL_LOGOUT}"
+                         -var="cognito_url_logout=${COGNITO_URL_LOGOUT}" \
                          -auto-approve
