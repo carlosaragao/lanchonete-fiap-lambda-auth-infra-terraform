@@ -26,6 +26,14 @@ jobs:
 
     - name: Terraform Validate
       run: terraform validate
+      
+    - name: Check environment variables
+      run: |
+        echo "API Gateway Name: ${API_GATEWAY_NAME}"
+        echo "Cognito Domain Name: ${COGNITO_DOMAIN_NAME}"
+      env:
+        API_GATEWAY_NAME: ${{ secrets.API_GATEWAY_NAME }}
+        COGNITO_DOMAIN_NAME: ${{ secrets.COGNITO_DOMAIN_NAME }}
 
     - name: Terraform Plan
       env:
