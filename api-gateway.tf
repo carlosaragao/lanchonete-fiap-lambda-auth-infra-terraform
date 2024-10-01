@@ -1,5 +1,5 @@
 resource "aws_apigatewayv2_api" "this" {
-  name          = var.API_GATEWAY_NAME
+  name          = var.AG_NAME
   protocol_type = "HTTP"
 }
 

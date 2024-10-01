@@ -38,7 +38,7 @@ variable "COGNITO_USER_POOL_NAME" {
   type        = string
 }
 
-variable "API_GATEWAY_NAME" {
+variable "AG_NAME" {
   description = "AWS API Gateway Name"
   type        = string
 }
