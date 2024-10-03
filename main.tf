@@ -6,6 +6,7 @@ terraform {
       version = "5.63.0"
     }
   }
+  backend "s3" {}
 }
 
 data "aws_iam_role" "cognito_cluster_role" {

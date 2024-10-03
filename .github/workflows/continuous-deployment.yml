@@ -18,7 +18,7 @@ jobs:
         terraform_version: 1.9.4
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend=true -backend-config="bucket=${{ secrets.BUCKET_NAME }}" -backend-config="key=${{ secrets.BUCKET_PATH }}" -backend-config="region=${{ secrets.AWS_REGION }}"
 
     - name: Terraform Format Check
       run: terraform fmt -check
